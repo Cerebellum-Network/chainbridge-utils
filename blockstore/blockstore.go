@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	"github.com/ChainSafe/log15"
 )
 
 const PathPostfix = ".chainbridge/blockstore"
@@ -33,6 +34,7 @@ type Blockstore struct {
 	fullPath string
 	chain    msg.ChainId
 	relayer  string
+	log      log15.Logger
 }
 
 func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore, error) {
@@ -50,6 +52,7 @@ func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore,
 		fullPath: filepath.Join(path, fileName),
 		chain:    chain,
 		relayer:  relayer,
+		log:      log15.New("blockstore", "blockstore"),
 	}, nil
 }
 
@@ -76,15 +79,21 @@ func (b *Blockstore) StoreBlock(block *big.Int) error {
 // Passing an empty string for path will cause it to use the home directory.
 func (b *Blockstore) TryLoadLatestBlock() (*big.Int, error) {
 	// If it exists, load and return
+	b.log.Info("Before fileExists")
 	exists, err := fileExists(b.fullPath)
 	if err != nil {
+	    b.log.Info("Error during fileExists check")
 		return nil, err
 	}
+	b.log.Info("Before exists check")
 	if exists {
+	    b.log.Info("File exists")
 		dat, err := ioutil.ReadFile(b.fullPath)
 		if err != nil {
+		    b.log.Info("Error during ReadFile")
 			return nil, err
 		}
+		b.log.Info("Before block initialization")
 		block, _ := big.NewInt(0).SetString(string(dat), 10)
 		return block, nil
 	}
