@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/msg"
+	"github.com/ChainSafe/log15"
 )
 
 const PathPostfix = ".chainbridge/blockstore"
@@ -33,6 +34,7 @@ type Blockstore struct {
 	fullPath string
 	chain    msg.ChainId
 	relayer  string
+	log      log15.Logger
 }
 
 func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore, error) {
@@ -50,6 +52,7 @@ func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore,
 		fullPath: filepath.Join(path, fileName),
 		chain:    chain,
 		relayer:  relayer,
+		log:      log15.New(),
 	}, nil
 }
 
@@ -85,8 +88,13 @@ func (b *Blockstore) TryLoadLatestBlock() (*big.Int, error) {
 		if err != nil {
 			return nil, err
 		}
-		block, _ := big.NewInt(0).SetString(string(dat), 10)
-		return block, nil
+		datAsString := string(dat)
+		if len(datAsString) > 0 {
+		    block, _ := big.NewInt(0).SetString(datAsString, 10)
+		    return block, nil
+		} else {
+		    b.log.Error(fmt.Sprintf("Blockstore file %s is empty.", b.fullPath))
+		}
 	}
 	// Otherwise just return 0
 	return big.NewInt(0), nil
