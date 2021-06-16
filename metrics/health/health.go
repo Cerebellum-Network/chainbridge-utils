@@ -49,6 +49,8 @@ func NewHealthServer(port int, chains []core.Chain, blockTimeout int) *httpMetri
 func (s httpMetricServer) HealthStatus(w http.ResponseWriter, r *http.Request) {
 	// Get last segment of URL
 	chainName := path.Base(r.URL.String())
+	log.Info("!!!Chain Name")
+	log.Info(chainName)
 	chain, ok := s.chains[chainName]
 	if !ok {
 		http.Error(w, "Invalid chain name", http.StatusNotFound)
