@@ -18,6 +18,7 @@ import (
 )
 
 type httpMetricServer struct {
+	mutex        sync.Mutex
 	port         int
 	blockTimeout int // After this duration (seconds) with no change in block height a chain will be considered unhealthy
 	chains       map[string]core.Chain
@@ -25,7 +26,6 @@ type httpMetricServer struct {
 }
 
 type ChainStats struct {
-	mutex       sync.Mutex
 	ChainId     msg.ChainId `json:"chainId"`
 	Height      *big.Int    `json:"height"`
 	LastUpdated time.Time   `json:"lastUpdated"`
@@ -50,6 +50,8 @@ func NewHealthServer(port int, chains []core.Chain, blockTimeout int) *httpMetri
 // The last segment of the URL is used to identify the chain (eg. "health/goerli" will return "goerli").
 func (s httpMetricServer) HealthStatus(w http.ResponseWriter, r *http.Request) {
 	// Get last segment of URL
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
 	chainName := path.Base(r.URL.String())
 	chain, ok := s.chains[chainName]
 	if !ok {
@@ -69,8 +71,6 @@ func (s httpMetricServer) HealthStatus(w http.ResponseWriter, r *http.Request) {
 			LastUpdated: current.LastUpdated,
 		}
 	} else {
-		s.stats[chainName].mutex.Lock()
-		defer s.stats[chainName].mutex.Unlock()
 		now := time.Now()
 		timeDiff := now.Sub(prev.LastUpdated)
 		// If block has changed, update it
