@@ -9,6 +9,7 @@ import (
 	"math/big"
 	"net/http"
 	"path"
+	"sync"
 	"time"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/core"
@@ -17,6 +18,7 @@ import (
 )
 
 type httpMetricServer struct {
+	lock         *sync.RWMutex
 	port         int
 	blockTimeout int // After this duration (seconds) with no change in block height a chain will be considered unhealthy
 	chains       map[string]core.Chain
@@ -37,6 +39,7 @@ func NewHealthServer(port int, chains []core.Chain, blockTimeout int) *httpMetri
 	}
 
 	return &httpMetricServer{
+		lock:         &sync.RWMutex{},
 		port:         port,
 		chains:       chainMap,
 		blockTimeout: blockTimeout,
@@ -48,6 +51,8 @@ func NewHealthServer(port int, chains []core.Chain, blockTimeout int) *httpMetri
 // The last segment of the URL is used to identify the chain (eg. "health/goerli" will return "goerli").
 func (s httpMetricServer) HealthStatus(w http.ResponseWriter, r *http.Request) {
 	// Get last segment of URL
+	s.lock.Lock()
+	defer s.lock.Unlock()
 	chainName := path.Base(r.URL.String())
 	chain, ok := s.chains[chainName]
 	if !ok {
