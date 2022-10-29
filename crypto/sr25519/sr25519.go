@@ -7,8 +7,8 @@ import (
 	"crypto/rand"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/snowfork/go-substrate-rpc-client/v4/signature"
+	"github.com/snowfork/go-substrate-rpc-client/v4/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -43,14 +43,14 @@ func (kp *Keypair) AsKeyringPair() *signature.KeyringPair {
 
 // Encode uses scale to encode underlying KeyringPair
 func (kp *Keypair) Encode() []byte {
-	out, _ := codec.Encode(kp.keyringPair)
+	out, _ := types.EncodeToBytes(kp.keyringPair)
 	return out
 }
 
 // Decode initializes keypair by decoding input as a KeyringPair
 func (kp *Keypair) Decode(in []byte) error {
 	kp.keyringPair = &signature.KeyringPair{}
-	return codec.Decode(in, kp.keyringPair)
+	return types.DecodeFromBytes(in, kp.keyringPair)
 }
 
 // Address returns the ss58 formated address
