@@ -5,6 +5,7 @@ package sr25519
 
 import (
 	"crypto/rand"
+	"strconv"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
@@ -28,7 +29,11 @@ func GenerateKeypair(network string) (*Keypair, error) {
 }
 
 func NewKeypairFromSeed(seed, network string) (*Keypair, error) {
-	kp, err := signature.KeyringPairFromSecret(seed, 2)
+	networkNum, err := strconv.Atoi(network)
+	if err != nil {
+		return nil, err
+	}
+	kp, err := signature.KeyringPairFromSecret(seed, uint8(networkNum))
 	return &Keypair{&kp}, err
 }
 
