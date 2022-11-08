@@ -14,5 +14,3 @@ require (
 	golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
-
-replace github.com/centrifuge/go-substrate-rpc-client/v4 => ../go-substrate-rpc-client
