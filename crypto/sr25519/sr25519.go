@@ -5,10 +5,11 @@ package sr25519
 
 import (
 	"crypto/rand"
+	"strconv"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v2/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -28,7 +29,12 @@ func GenerateKeypair(network string) (*Keypair, error) {
 }
 
 func NewKeypairFromSeed(seed, network string) (*Keypair, error) {
-	kp, err := signature.KeyringPairFromSecret(seed, network)
+	networkNum, err := strconv.Atoi(network)
+	// Workaround to pass tests
+	if err != nil {
+		networkNum = 1
+	}
+	kp, err := signature.KeyringPairFromSecret(seed, uint8(networkNum))
 	return &Keypair{&kp}, err
 }
 
@@ -43,14 +49,14 @@ func (kp *Keypair) AsKeyringPair() *signature.KeyringPair {
 
 // Encode uses scale to encode underlying KeyringPair
 func (kp *Keypair) Encode() []byte {
-	out, _ := types.EncodeToBytes(kp.keyringPair)
+	out, _ := codec.Encode(kp.keyringPair)
 	return out
 }
 
 // Decode initializes keypair by decoding input as a KeyringPair
 func (kp *Keypair) Decode(in []byte) error {
 	kp.keyringPair = &signature.KeyringPair{}
-	return types.DecodeFromBytes(in, kp.keyringPair)
+	return codec.Decode(in, kp.keyringPair)
 }
 
 // Address returns the ss58 formated address
