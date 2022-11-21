@@ -8,8 +8,8 @@ import (
 	"strconv"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/types/codec"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
