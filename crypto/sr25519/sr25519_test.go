@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v4/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v5/signature"
 )
 
 func TestNewKeypairFromSeed(t *testing.T) {
