@@ -3,6 +3,8 @@ github.com/Azure/azure-sdk-for-go/sdk/internal v0.8.3/go.mod h1:KLF4gFr6DcKFZwSu
 github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.3.0/go.mod h1:tPaiy8S5bQ+S5sOiDlINkp7+Ef339+Nz5L5XO+cnOHo=
 github.com/Cerebellum-Network/go-substrate-rpc-client/v6 v6.0.0 h1:XkwNv3q7txn9qaNeuQwOyMUAznldgByV0WqY+g0hqAA=
 github.com/Cerebellum-Network/go-substrate-rpc-client/v6 v6.0.0/go.mod h1:rOHTPlfCs+jqc9zPRTtH1XK8BsBeR2cdNBEoijjyi1Y=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v6 v6.0.1 h1:xBrXqekPlFasJzP6gr69hjVrx77qHdSPcGG68CuriNw=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v6 v6.0.1/go.mod h1:rOHTPlfCs+jqc9zPRTtH1XK8BsBeR2cdNBEoijjyi1Y=
 github.com/ChainSafe/go-schnorrkel v1.0.0 h1:3aDA67lAykLaG1y3AOjs88dMxC88PgUuHRrLeDnvGIM=
 github.com/ChainSafe/go-schnorrkel v1.0.0/go.mod h1:dpzHYVxLZcp8pjlV+O+UR8K0Hp/z7vcchBSbMBEhCw4=
 github.com/ChainSafe/log15 v1.0.0 h1:vRDVtWtVwIH5uSCBvgTTZh6FA58UBJ6+QiiypaZfBf8=
