@@ -9,7 +9,7 @@ import (
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto/secp256k1"
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto/sr25519"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v6/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/signature"
 )
 
 // The Constant "keys". These are the name that the keys are based on. This can be expanded, but
