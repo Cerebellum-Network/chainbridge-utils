@@ -4,7 +4,6 @@
 package blockstore
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"math/big"
@@ -56,10 +55,6 @@ func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore,
 
 // StoreBlock writes the block number to disk.
 func (b *Blockstore) StoreBlock(block *big.Int) error {
-	if block == nil {
-		return errors.New("storing empty string will lead to Blockstore corruption")
-	}
-
 	// Create dir if it does not exist
 	if _, err := os.Stat(b.path); os.IsNotExist(err) {
 		errr := os.MkdirAll(b.path, os.ModePerm)
