@@ -4,6 +4,7 @@
 package blockstore
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"math/big"
@@ -85,7 +86,10 @@ func (b *Blockstore) TryLoadLatestBlock() (*big.Int, error) {
 		if err != nil {
 			return nil, err
 		}
-		block, _ := big.NewInt(0).SetString(string(dat), 10)
+		block, err := parseBlock(dat)
+		if err != nil {
+			return big.NewInt(0), nil
+		}
 		return block, nil
 	}
 	// Otherwise just return 0
@@ -114,4 +118,13 @@ func fileExists(fileName string) (bool, error) {
 		return false, err
 	}
 	return true, nil
+}
+
+func parseBlock(bytes []byte) (*big.Int, error) {
+	block, ok := big.NewInt(0).SetString(string(bytes), 10)
+	if !ok {
+		return nil, errors.New("can not parse block number")
+	}
+
+	return block, nil
 }
