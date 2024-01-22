@@ -5,6 +5,7 @@ package blockstore
 
 import (
 	"fmt"
+	"github.com/google/renameio/v2"
 	"io/ioutil"
 	"math/big"
 	"os"
@@ -65,7 +66,7 @@ func (b *Blockstore) StoreBlock(block *big.Int) error {
 
 	// Write bytes to file
 	data := []byte(block.String())
-	err := ioutil.WriteFile(b.fullPath, data, 0600)
+	err := renameio.WriteFile(b.fullPath, data, 0600)
 	if err != nil {
 		return err
 	}
