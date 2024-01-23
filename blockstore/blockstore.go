@@ -4,6 +4,7 @@
 package blockstore
 
 import (
+	"errors"
 	"fmt"
 	"github.com/google/renameio/v2"
 	"io/ioutil"
@@ -87,6 +88,9 @@ func (b *Blockstore) TryLoadLatestBlock() (*big.Int, error) {
 			return nil, err
 		}
 		block, _ := big.NewInt(0).SetString(string(dat), 10)
+		if block == nil {
+			return nil, errors.New("block number cannot be nil")
+		}
 		return block, nil
 	}
 	// Otherwise just return 0
