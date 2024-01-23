@@ -6,6 +6,7 @@ package blockstore
 import (
 	"errors"
 	"fmt"
+	"github.com/google/renameio/v2"
 	"io/ioutil"
 	"math/big"
 	"os"
@@ -56,10 +57,6 @@ func NewBlockstore(path string, chain msg.ChainId, relayer string) (*Blockstore,
 
 // StoreBlock writes the block number to disk.
 func (b *Blockstore) StoreBlock(block *big.Int) error {
-	if block == nil {
-		return errors.New("storing empty string will lead to Blockstore corruption")
-	}
-
 	// Create dir if it does not exist
 	if _, err := os.Stat(b.path); os.IsNotExist(err) {
 		errr := os.MkdirAll(b.path, os.ModePerm)
@@ -70,7 +67,7 @@ func (b *Blockstore) StoreBlock(block *big.Int) error {
 
 	// Write bytes to file
 	data := []byte(block.String())
-	err := ioutil.WriteFile(b.fullPath, data, 0600)
+	err := renameio.WriteFile(b.fullPath, data, 0600)
 	if err != nil {
 		return err
 	}
@@ -91,6 +88,9 @@ func (b *Blockstore) TryLoadLatestBlock() (*big.Int, error) {
 			return nil, err
 		}
 		block, _ := big.NewInt(0).SetString(string(dat), 10)
+		if block == nil {
+			return nil, errors.New("block number cannot be nil")
+		}
 		return block, nil
 	}
 	// Otherwise just return 0
