@@ -34,7 +34,7 @@ func NewKeypairFromSeed(seed, network string) (*Keypair, error) {
 	if err != nil {
 		networkNum = 1
 	}
-	kp, err := signature.KeyringPairFromSecret(seed, uint8(networkNum))
+	kp, err := signature.KeyringPairFromSecret(seed, uint16(networkNum))
 	return &Keypair{&kp}, err
 }
 
