@@ -35,6 +35,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/Cerebellum-Network/go-substrate-rpc-client/v8 v8.0.1-rc h1:U/o8tNQzsjRz5lQS1Zdfhm4ot/vfviAD3mVaEI35egE=
 github.com/Cerebellum-Network/go-substrate-rpc-client/v8 v8.0.1-rc/go.mod h1:3NiCQzqkio9HRDnP3Kck3RWFrF+pa7x/UYhD5vjmttA=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v8 v8.0.2-rc h1:R1ZegZvpBaCaZ8nYih8qZRiFqzoJYeNG0JVLnlEtleA=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v8 v8.0.2-rc/go.mod h1:3NiCQzqkio9HRDnP3Kck3RWFrF+pa7x/UYhD5vjmttA=
 github.com/ChainSafe/go-schnorrkel v1.1.0 h1:rZ6EU+CZFCjB4sHUE1jIu8VDoB/wRKZxoe1tkcO71Wk=
 github.com/ChainSafe/go-schnorrkel v1.1.0/go.mod h1:ABkENxiP+cvjFiByMIZ9LYbRoNNLeBLiakC1XeTFxfE=
 github.com/ChainSafe/log15 v1.0.0 h1:vRDVtWtVwIH5uSCBvgTTZh6FA58UBJ6+QiiypaZfBf8=
