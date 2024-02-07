@@ -8,8 +8,8 @@ import (
 	"strconv"
 
 	"github.com/Cerebellum-Network/chainbridge-utils/crypto"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/signature"
-	"github.com/Cerebellum-Network/go-substrate-rpc-client/v7/types/codec"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/signature"
+	"github.com/Cerebellum-Network/go-substrate-rpc-client/v8/types/codec"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -34,7 +34,7 @@ func NewKeypairFromSeed(seed, network string) (*Keypair, error) {
 	if err != nil {
 		networkNum = 1
 	}
-	kp, err := signature.KeyringPairFromSecret(seed, uint8(networkNum))
+	kp, err := signature.KeyringPairFromSecret(seed, uint16(networkNum))
 	return &Keypair{&kp}, err
 }
 
