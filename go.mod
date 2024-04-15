@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.5
 
 require (
-	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.2
+	github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.3
 	github.com/ChainSafe/log15 v1.0.0
 	github.com/ethereum/go-ethereum v1.13.11
 	github.com/google/renameio/v2 v2.0.0
