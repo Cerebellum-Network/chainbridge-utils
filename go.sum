@@ -33,8 +33,8 @@ cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.2 h1:x5hfEv60V9flpG/zPPxCRw4OxWBZgoABf3QSvzuu6gY=
-github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.2/go.mod h1:xaMq//F++u8q/cGcGAUvHEbMKfOeIY15ioQNCXjEUa0=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.3 h1:sDALT60rVsICvSX9gSMejFeOrkeIziLsQWqOQUkBlPo=
+github.com/Cerebellum-Network/go-substrate-rpc-client/v9 v9.0.3/go.mod h1:xaMq//F++u8q/cGcGAUvHEbMKfOeIY15ioQNCXjEUa0=
 github.com/ChainSafe/go-schnorrkel v1.1.0 h1:rZ6EU+CZFCjB4sHUE1jIu8VDoB/wRKZxoe1tkcO71Wk=
 github.com/ChainSafe/go-schnorrkel v1.1.0/go.mod h1:ABkENxiP+cvjFiByMIZ9LYbRoNNLeBLiakC1XeTFxfE=
 github.com/ChainSafe/log15 v1.0.0 h1:vRDVtWtVwIH5uSCBvgTTZh6FA58UBJ6+QiiypaZfBf8=
