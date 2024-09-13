@@ -86,6 +86,7 @@ func (s httpMetricServer) HealthStatus(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	log.Info("Health check request", "chain", chainName, "url", r.URL.String(), "height", s.stats[chainName].Height , "lastUpdated", s.stats[chainName].LastUpdated)
 
 	err := json.NewEncoder(w).Encode(s.stats[chainName])
 	if err != nil {
